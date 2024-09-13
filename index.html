@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AudioPlatform - Home</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+   
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">AudioPlatform</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto nav-list ">
+          <li class="nav-item" id="loginNav">
+            <a class="nav-link" href="login.html">Login</a>
+          </li>
+          <li class="nav-item" id="registerNav">
+            <a class="nav-link" href="register.html">Register</a>
+          </li>
+          <li class="nav-item" id="logoutNav" style="display: none">
+            <a class="nav-link" href="#" id="logoutBtn">Logout</a>
+          </li>
+          <li class="nav-item dropdown" id="profileNav">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <img
+                src="assets/profileAvatar.svg"
+                id="profilePic"
+                class="rounded-circle"
+                width="30"
+                height="30"
+                alt="Profile"
+              />
+              <span id="username">User</span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#" id="changeProfilePic"
+                >Change Profile Picture</a
+              >
+              <a class="dropdown-item" href="favorites.html">View Favorites</a>
+              <a class="dropdown-item" href="change-password.html"
+                >Change Password</a
+              >
+
+              <!-- Add this link -->
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="">Audio Books</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">Podcasts</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">Categories</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Search Bar Section -->
+    <div class="container">
+      <div class="row justify-content-center mt-5">
+        <div class="col-md-6">
+          <div class="search-wrapper d-flex g-3">
+            <input
+              type="text"
+              id="searchInput"
+              class="form-control"
+              placeholder="Search your audiobook or podcast..."
+            />
+            <button id="searchButton" class="btn btn-primary">Search</button>
+          </div>
+          <div id="searchResults" class="mt-3"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container mt-5 text-center">
+      <h1>Welcome to AudioPlatform</h1>
+      <p>Explore your favorite audio books and podcasts</p>
+      <div class="row mt-4">
+        <div class="col-md-4">
+          <button class="btn btn-outline-primary btn-block" id="audiobookBtn">
+            Audio Books
+          </button>
+        </div>
+        <div class="col-md-4">
+          <button
+            class="btn btn-outline-secondary btn-block"
+            onclick="window.location.href='podcasts.html'"
+          >
+            Podcasts
+          </button>
+        </div>
+        <div class="col-md-4">
+          <button
+            class="btn btn-outline-info btn-block"
+            onclick="window.location.href='categories.html'"
+          >
+            Categories
+          </button>
+        </div>
+      </div>
+
+      <!-- Genre Dropdown -->
+      <div class="container mt-5 text-center">
+        <h2>Categories</h2>
+        <p>Select a genre to filter audiobooks</p>
+        <div class="row mt-4">
+          <div class="col-md-6 offset-md-3">
+            <select id="genreDropdown" class="form-select">
+              <option value="">Select Genre</option>
+              <!-- Genres will be dynamically added here -->
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Placeholder for the audiobook card -->
+    <div class="container mt-5">
+      <div id="audiobook-card-section">
+        <h2 class="section-title">Audiobooks</h2>
+        <hr class="section-divider" />
+        <div class="row" id="audiobook-container">
+          <!-- Audiobook cards will be added here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Placeholder for the podcast card -->
+    <div class="container mt-5">
+      <div id="podcast-card-section">
+        <h2 class="section-title">Podcasts</h2>
+        <hr class="section-divider" />
+        <div class="row" id="podcast-container">
+          <!-- Podcast cards will be added here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for Changing Profile Picture -->
+    <div
+      class="modal fade"
+      id="changeProfilePicModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="changeProfilePicModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="changeProfilePicModalLabel">
+              Change Profile Picture
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="profilePicForm">
+              <div class="form-group">
+                <label for="profilePicInput"
+                  >Choose a new profile picture:</label
+                >
+                <input
+                  type="file"
+                  class="form-control-file"
+                  id="profilePicInput"
+                  accept="image/*"
+                />
+              </div>
+              <button type="submit" class="btn btn-primary">Upload</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="js/logout.js"></script>
+    <script src="js/audiobookCard.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/categoriesFilter.js"></script>
+    <script src="js/profileChange.js"></script>
+  </body>
+</html>
